@@ -13,6 +13,27 @@
     <title>weekend? 👀</title>
 
 
+    <!-- =====================================================
+         GOOGLE FONTS
+    ====================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+
     <style>
 
         /* =====================================================
@@ -26,14 +47,6 @@
 
             --bg-soft:
                 #17091e;
-
-            --card:
-                rgba(
-                    38,
-                    17,
-                    45,
-                    0.87
-                );
 
             --pink:
                 #ff95d8;
@@ -107,8 +120,7 @@
                 var(--text);
 
             font-family:
-                "Segoe UI",
-                Arial,
+                "Poppins",
                 sans-serif;
 
             background:
@@ -275,7 +287,7 @@
 
 
         /* =====================================================
-           MAIN APP
+           APP
         ===================================================== */
 
         .app {
@@ -301,7 +313,7 @@
                 relative;
 
             padding:
-                42px
+                44px
                 30px
                 32px;
 
@@ -362,6 +374,40 @@
 
             backdrop-filter:
                 blur(16px);
+
+            -webkit-backdrop-filter:
+                blur(16px);
+
+        }
+
+
+        .card::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            inset:
+                0;
+
+            pointer-events:
+                none;
+
+            background:
+
+                linear-gradient(
+                    125deg,
+                    transparent,
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.025
+                    ),
+                    transparent
+                );
 
         }
 
@@ -470,7 +516,7 @@
         .label {
 
             margin-bottom:
-                17px;
+                18px;
 
             color:
                 rgba(
@@ -480,8 +526,15 @@
                     0.45
                 );
 
+            font-family:
+                "Poppins",
+                sans-serif;
+
             font-size:
-                10px;
+                9px;
+
+            font-weight:
+                500;
 
             letter-spacing:
                 3px;
@@ -499,21 +552,28 @@
         h1 {
 
             margin-bottom:
-                15px;
+                16px;
+
+            font-family:
+                "Playfair Display",
+                serif;
 
             font-size:
 
                 clamp(
-                    27px,
+                    30px,
                     7vw,
-                    38px
+                    42px
                 );
 
             font-weight:
                 500;
 
             line-height:
-                1.25;
+                1.22;
+
+            letter-spacing:
+                -0.6px;
 
         }
 
@@ -523,12 +583,16 @@
             margin-bottom:
                 28px;
 
+            font-family:
+                "Playfair Display",
+                serif;
+
             font-size:
 
                 clamp(
-                    22px,
+                    24px,
                     6vw,
-                    29px
+                    31px
                 );
 
             font-weight:
@@ -554,11 +618,18 @@
             color:
                 var(--muted);
 
+            font-family:
+                "Poppins",
+                sans-serif;
+
             font-size:
-                15px;
+                14px;
+
+            font-weight:
+                300;
 
             line-height:
-                1.7;
+                1.85;
 
         }
 
@@ -625,10 +696,14 @@
                 #fff;
 
             font-family:
-                inherit;
+                "Poppins",
+                sans-serif;
 
             font-size:
-                14px;
+                13px;
+
+            font-weight:
+                500;
 
             cursor:
                 pointer;
@@ -826,8 +901,15 @@
             color:
                 var(--muted);
 
+            font-family:
+                "Poppins",
+                sans-serif;
+
             font-size:
-                12px;
+                11px;
+
+            font-weight:
+                300;
 
         }
 
@@ -837,8 +919,15 @@
             color:
                 var(--pink-light);
 
+            font-family:
+                "Poppins",
+                sans-serif;
+
             font-size:
                 13px;
+
+            font-weight:
+                500;
 
             text-align:
                 right;
@@ -861,8 +950,12 @@
             color:
                 var(--pink-light);
 
+            font-family:
+                "Poppins",
+                sans-serif;
+
             font-size:
-                12px;
+                11px;
 
         }
 
@@ -881,11 +974,18 @@
                     0.36
                 );
 
+            font-family:
+                "Poppins",
+                sans-serif;
+
             font-size:
-                10px;
+                9px;
+
+            font-weight:
+                300;
 
             line-height:
-                1.6;
+                1.7;
 
         }
 
@@ -910,7 +1010,7 @@
 
                 padding:
 
-                    34px
+                    36px
                     20px
                     27px;
 
@@ -924,6 +1024,22 @@
 
                 grid-template-columns:
                     1fr;
+
+            }
+
+
+            h1 {
+
+                font-size:
+                    34px;
+
+            }
+
+
+            .question {
+
+                font-size:
+                    26px;
 
             }
 
@@ -1051,11 +1167,7 @@
 
                     <button
                         class="primary"
-                        onclick="
-                            chooseNextWeekend(
-                                'Boleh dicoba 👀'
-                            )
-                        "
+                        onclick="chooseNextWeekend('Boleh dicoba 👀')"
                     >
 
                         boleh dicoba 👀
@@ -1064,11 +1176,7 @@
 
 
                     <button
-                        onclick="
-                            chooseNextWeekend(
-                                'Nanti aku kabarin'
-                            )
-                        "
+                        onclick="chooseNextWeekend('Nanti aku kabarin')"
                     >
 
                         nanti aku kabarin
@@ -1117,11 +1225,7 @@
 
 
                     <button
-                        onclick="
-                            chooseActivity(
-                                '☕ Ngopi'
-                            )
-                        "
+                        onclick="chooseActivity('☕ Ngopi')"
                     >
 
                         ☕ ngopi
@@ -1130,11 +1234,7 @@
 
 
                     <button
-                        onclick="
-                            chooseActivity(
-                                '🍜 Makan'
-                            )
-                        "
+                        onclick="chooseActivity('🍜 Makan')"
                     >
 
                         🍜 makan
@@ -1143,11 +1243,7 @@
 
 
                     <button
-                        onclick="
-                            chooseActivity(
-                                '🎬 Nonton'
-                            )
-                        "
+                        onclick="chooseActivity('🎬 Nonton')"
                     >
 
                         🎬 nonton
@@ -1156,11 +1252,7 @@
 
 
                     <button
-                        onclick="
-                            chooseActivity(
-                                '🎮 Main / Arcade'
-                            )
-                        "
+                        onclick="chooseActivity('🎮 Main / Arcade')"
                     >
 
                         🎮 main
@@ -1206,11 +1298,7 @@
 
 
                     <button
-                        onclick="
-                            chooseVibe(
-                                '✨ Aesthetic & chill'
-                            )
-                        "
+                        onclick="chooseVibe('✨ Aesthetic & chill')"
                     >
 
                         ✨ aesthetic & chill
@@ -1219,11 +1307,7 @@
 
 
                     <button
-                        onclick="
-                            chooseVibe(
-                                '🍽️ Yang penting enak'
-                            )
-                        "
+                        onclick="chooseVibe('🍽️ Yang penting enak')"
                     >
 
                         🍽️ yang penting enak
@@ -1232,11 +1316,7 @@
 
 
                     <button
-                        onclick="
-                            chooseVibe(
-                                '🎲 Bebas, yang penting seru'
-                            )
-                        "
+                        onclick="chooseVibe('🎲 Bebas, yang penting seru')"
                     >
 
                         🎲 bebas, yang penting seru
@@ -1281,11 +1361,7 @@
 
 
                     <button
-                        onclick="
-                            chooseTime(
-                                '☀️ Siang'
-                            )
-                        "
+                        onclick="chooseTime('☀️ Siang')"
                     >
 
                         ☀️ siang
@@ -1294,11 +1370,7 @@
 
 
                     <button
-                        onclick="
-                            chooseTime(
-                                '🌆 Sore'
-                            )
-                        "
+                        onclick="chooseTime('🌆 Sore')"
                     >
 
                         🌆 sore
@@ -1307,11 +1379,7 @@
 
 
                     <button
-                        onclick="
-                            chooseTime(
-                                '🌙 Malam'
-                            )
-                        "
+                        onclick="chooseTime('🌙 Malam')"
                     >
 
                         🌙 malam
@@ -1320,11 +1388,7 @@
 
 
                     <button
-                        onclick="
-                            chooseTime(
-                                '🤷 Bebas'
-                            )
-                        "
+                        onclick="chooseTime('🤷 Bebas')"
                     >
 
                         🤷 bebas
@@ -1606,8 +1670,6 @@
 
     <!-- =====================================================
          HIDDEN FORM
-
-         Form dikirim ke Apps Script melalui iframe tersembunyi.
     ====================================================== -->
 
     <iframe
@@ -1666,10 +1728,9 @@
 
 
         // =====================================================
-        // GOOGLE APPS SCRIPT URL
+        // GOOGLE APPS SCRIPT
         //
-        // GANTI URL DI BAWAH INI
-        // dengan URL Web App Apps Script kamu.
+        // GANTI dengan URL Web App Apps Script kamu.
         // =====================================================
 
         const GOOGLE_SCRIPT_URL =
@@ -1677,7 +1738,7 @@
 
 
         // =====================================================
-        // ANSWER STATE
+        // ANSWERS
         // =====================================================
 
         const answers = {
@@ -1706,7 +1767,7 @@
 
 
         // =====================================================
-        // SCREEN
+        // SHOW SCREEN
         // =====================================================
 
         function showScreen(id) {
@@ -1929,10 +1990,6 @@
             }
 
 
-            // ---------------------------------------------
-            // Check URL
-            // ---------------------------------------------
-
             if (
                 GOOGLE_SCRIPT_URL.includes(
                     "PASTE_APPS_SCRIPT"
@@ -1945,7 +2002,7 @@
 
                     "Ganti PASTE_APPS_SCRIPT_URL_DI_SINI " +
 
-                    "dengan URL Web App dari Apps Script."
+                    "dengan URL Web App Apps Script kamu."
 
                 );
 
@@ -1960,10 +2017,6 @@
                 true;
 
 
-
-            // ---------------------------------------------
-            // Status
-            // ---------------------------------------------
 
             const status1 =
                 document.getElementById(
@@ -1994,10 +2047,6 @@
 
 
 
-            // ---------------------------------------------
-            // Buttons
-            // ---------------------------------------------
-
             const button1 =
                 document.getElementById(
                     "sendButton"
@@ -2026,10 +2075,6 @@
             }
 
 
-
-            // ---------------------------------------------
-            // Populate form
-            // ---------------------------------------------
 
             document
                 .getElementById(
@@ -2087,10 +2132,6 @@
 
 
 
-            // ---------------------------------------------
-            // Submit
-            // ---------------------------------------------
-
             const form =
                 document.getElementById(
                     "sheetForm"
@@ -2104,10 +2145,6 @@
             form.submit();
 
 
-
-            // ---------------------------------------------
-            // Show success screen
-            // ---------------------------------------------
 
             setTimeout(
 

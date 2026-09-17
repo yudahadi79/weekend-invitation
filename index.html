@@ -1,0 +1,2351 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>weekend? 👀</title>
+
+
+    <style>
+
+        /* =====================================================
+           ROOT
+        ===================================================== */
+
+        :root {
+
+            --bg:
+                #08060f;
+
+            --bg-soft:
+                #17091e;
+
+            --card:
+                rgba(
+                    38,
+                    17,
+                    45,
+                    0.87
+                );
+
+            --pink:
+                #ff95d8;
+
+            --pink-light:
+                #ffc0e5;
+
+            --purple:
+                #cda3ff;
+
+            --text:
+                #fff9fc;
+
+            --muted:
+                #bba6b8;
+
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+
+            box-sizing:
+                border-box;
+
+            margin:
+                0;
+
+            padding:
+                0;
+
+        }
+
+
+        html,
+        body {
+
+            width:
+                100%;
+
+            min-height:
+                100%;
+
+        }
+
+
+        body {
+
+            min-height:
+                100vh;
+
+            padding:
+                18px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            overflow-x:
+                hidden;
+
+            color:
+                var(--text);
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            background:
+
+                radial-gradient(
+                    circle at 50% 85%,
+                    #371132,
+                    #17091e 42%,
+                    #08060f 78%
+                );
+
+        }
+
+
+        /* =====================================================
+           BACKGROUND GLOW
+        ===================================================== */
+
+        .glow {
+
+            position:
+                fixed;
+
+            width:
+                450px;
+
+            height:
+                450px;
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(
+                    255,
+                    76,
+                    185,
+                    0.09
+                );
+
+            filter:
+                blur(100px);
+
+            pointer-events:
+                none;
+
+            animation:
+                glowMove
+                8s
+                ease-in-out
+                infinite
+                alternate;
+
+        }
+
+
+        @keyframes glowMove {
+
+            from {
+
+                transform:
+                    translate(
+                        -120px,
+                        100px
+                    );
+
+            }
+
+            to {
+
+                transform:
+                    translate(
+                        130px,
+                        -100px
+                    );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           PARTICLES
+        ===================================================== */
+
+        #particles {
+
+            position:
+                fixed;
+
+            inset:
+                0;
+
+            overflow:
+                hidden;
+
+            pointer-events:
+                none;
+
+            z-index:
+                1;
+
+        }
+
+
+        .particle {
+
+            position:
+                absolute;
+
+            bottom:
+                -40px;
+
+            opacity:
+                0;
+
+            animation:
+                floatParticle
+                linear
+                infinite;
+
+        }
+
+
+        @keyframes floatParticle {
+
+            0% {
+
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+                opacity:
+                    0;
+
+            }
+
+            10% {
+
+                opacity:
+                    0.55;
+
+            }
+
+            85% {
+
+                opacity:
+                    0.3;
+
+            }
+
+            100% {
+
+                transform:
+                    translateY(-115vh)
+                    rotate(30deg);
+
+                opacity:
+                    0;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           MAIN APP
+        ===================================================== */
+
+        .app {
+
+            position:
+                relative;
+
+            width:
+                100%;
+
+            max-width:
+                520px;
+
+            z-index:
+                5;
+
+        }
+
+
+        .card {
+
+            position:
+                relative;
+
+            padding:
+                42px
+                30px
+                32px;
+
+            border-radius:
+                32px;
+
+            overflow:
+                hidden;
+
+            text-align:
+                center;
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    rgba(
+                        60,
+                        21,
+                        54,
+                        0.94
+                    ),
+                    rgba(
+                        24,
+                        13,
+                        36,
+                        0.94
+                    )
+                );
+
+            border:
+
+                1px solid
+                rgba(
+                    255,
+                    151,
+                    216,
+                    0.23
+                );
+
+            box-shadow:
+
+                0 20px 80px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.55
+                ),
+
+                0 0 45px
+                rgba(
+                    255,
+                    91,
+                    190,
+                    0.07
+                );
+
+            backdrop-filter:
+                blur(16px);
+
+        }
+
+
+        /* =====================================================
+           SCREEN
+        ===================================================== */
+
+        .screen {
+
+            display:
+                none;
+
+        }
+
+
+        .screen.active {
+
+            display:
+                block;
+
+            animation:
+                screenIn
+                0.45s
+                ease;
+
+        }
+
+
+        @keyframes screenIn {
+
+            from {
+
+                opacity:
+                    0;
+
+                transform:
+                    translateY(14px)
+                    scale(0.98);
+
+            }
+
+            to {
+
+                opacity:
+                    1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           DECORATION
+        ===================================================== */
+
+        .star {
+
+            margin-bottom:
+                14px;
+
+            color:
+                var(--pink);
+
+            font-size:
+                23px;
+
+            text-shadow:
+
+                0 0 18px
+                rgba(
+                    255,
+                    107,
+                    204,
+                    0.75
+                );
+
+            animation:
+                pulse
+                2s
+                ease-in-out
+                infinite;
+
+        }
+
+
+        @keyframes pulse {
+
+            50% {
+
+                transform:
+                    scale(1.18);
+
+                opacity:
+                    0.7;
+
+            }
+
+        }
+
+
+        .label {
+
+            margin-bottom:
+                17px;
+
+            color:
+                rgba(
+                    255,
+                    205,
+                    237,
+                    0.45
+                );
+
+            font-size:
+                10px;
+
+            letter-spacing:
+                3px;
+
+            text-transform:
+                uppercase;
+
+        }
+
+
+        /* =====================================================
+           TEXT
+        ===================================================== */
+
+        h1 {
+
+            margin-bottom:
+                15px;
+
+            font-size:
+
+                clamp(
+                    27px,
+                    7vw,
+                    38px
+                );
+
+            font-weight:
+                500;
+
+            line-height:
+                1.25;
+
+        }
+
+
+        .question {
+
+            margin-bottom:
+                28px;
+
+            font-size:
+
+                clamp(
+                    22px,
+                    6vw,
+                    29px
+                );
+
+            font-weight:
+                500;
+
+            line-height:
+                1.4;
+
+        }
+
+
+        .subtitle {
+
+            max-width:
+                390px;
+
+            margin:
+
+                0
+                auto
+                28px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                15px;
+
+            line-height:
+                1.7;
+
+        }
+
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
+        .options {
+
+            display:
+                grid;
+
+            gap:
+                11px;
+
+        }
+
+
+        .options.two {
+
+            grid-template-columns:
+
+                repeat(
+                    2,
+                    1fr
+                );
+
+        }
+
+
+        button {
+
+            width:
+                100%;
+
+            padding:
+                14px
+                15px;
+
+            border-radius:
+                17px;
+
+            border:
+
+                1px solid
+                rgba(
+                    255,
+                    173,
+                    225,
+                    0.19
+                );
+
+            background:
+
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.055
+                );
+
+            color:
+                #fff;
+
+            font-family:
+                inherit;
+
+            font-size:
+                14px;
+
+            cursor:
+                pointer;
+
+            transition:
+
+                transform
+                0.2s,
+
+                background
+                0.2s,
+
+                border-color
+                0.2s,
+
+                box-shadow
+                0.2s;
+
+        }
+
+
+        button:hover {
+
+            transform:
+                translateY(-2px);
+
+            background:
+
+                rgba(
+                    255,
+                    115,
+                    201,
+                    0.13
+                );
+
+            border-color:
+
+                rgba(
+                    255,
+                    173,
+                    225,
+                    0.43
+                );
+
+            box-shadow:
+
+                0 8px 25px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.22
+                );
+
+        }
+
+
+        button:active {
+
+            transform:
+                scale(0.98);
+
+        }
+
+
+        button:disabled {
+
+            opacity:
+                0.55;
+
+            cursor:
+                wait;
+
+            transform:
+                none;
+
+        }
+
+
+        .primary {
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #ad3788,
+                    #71409d
+                );
+
+            border:
+
+                1px solid
+                rgba(
+                    255,
+                    190,
+                    230,
+                    0.4
+                );
+
+            box-shadow:
+
+                0 8px 28px
+                rgba(
+                    187,
+                    61,
+                    154,
+                    0.22
+                );
+
+        }
+
+
+        .primary:hover {
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #bf4098,
+                    #814ab0
+                );
+
+        }
+
+
+        /* =====================================================
+           SUMMARY
+        ===================================================== */
+
+        .summary {
+
+            display:
+                grid;
+
+            gap:
+                10px;
+
+            margin:
+
+                21px
+                0
+                27px;
+
+            text-align:
+                left;
+
+        }
+
+
+        .summary-row {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+            padding:
+                13px
+                15px;
+
+            border-radius:
+                14px;
+
+            background:
+
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.045
+                );
+
+            border:
+
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.05
+                );
+
+        }
+
+
+        .summary-label {
+
+            color:
+                var(--muted);
+
+            font-size:
+                12px;
+
+        }
+
+
+        .summary-value {
+
+            color:
+                var(--pink-light);
+
+            font-size:
+                13px;
+
+            text-align:
+                right;
+
+        }
+
+
+        /* =====================================================
+           STATUS
+        ===================================================== */
+
+        .send-status {
+
+            min-height:
+                23px;
+
+            margin-top:
+                15px;
+
+            color:
+                var(--pink-light);
+
+            font-size:
+                12px;
+
+        }
+
+
+        .tiny {
+
+            margin-top:
+                14px;
+
+            color:
+
+                rgba(
+                    255,
+                    227,
+                    244,
+                    0.36
+                );
+
+            font-size:
+                10px;
+
+            line-height:
+                1.6;
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (
+            max-width: 500px
+        ) {
+
+            body {
+
+                padding:
+                    13px;
+
+            }
+
+
+            .card {
+
+                padding:
+
+                    34px
+                    20px
+                    27px;
+
+                border-radius:
+                    25px;
+
+            }
+
+
+            .options.two {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="glow"></div>
+
+    <div id="particles"></div>
+
+
+
+    <main class="app">
+
+        <div class="card">
+
+
+            <!-- =================================================
+                 INTRO
+            ================================================== -->
+
+            <section
+                id="intro"
+                class="screen active"
+            >
+
+                <div class="star">
+                    ✦
+                </div>
+
+
+                <div class="label">
+                    random question
+                </div>
+
+
+                <h1>
+                    weekend ini free ga? 👀
+                </h1>
+
+
+                <p class="subtitle">
+
+                    mau ngajak main nih
+
+                    <br>
+
+                    tapi sebelum itu
+                    jawab ini dulu 😭
+
+                </p>
+
+
+                <div class="options two">
+
+
+                    <button
+                        class="primary"
+                        onclick="answerFree(true)"
+                    >
+
+                        iya, free 🤍
+
+                    </button>
+
+
+                    <button
+                        onclick="answerFree(false)"
+                    >
+
+                        engga nih 😭
+
+                    </button>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 NOT FREE
+            ================================================== -->
+
+            <section
+                id="notFree"
+                class="screen"
+            >
+
+                <div class="star">
+                    ♡
+                </div>
+
+
+                <div class="question">
+
+                    yahh 😭
+
+                </div>
+
+
+                <p class="subtitle">
+
+                    ternyata weekend ini
+                    sibuk ya...
+
+                    <br><br>
+
+                    kalau next weekend gimana? 👀
+
+                </p>
+
+
+                <div class="options">
+
+
+                    <button
+                        class="primary"
+                        onclick="
+                            chooseNextWeekend(
+                                'Boleh dicoba 👀'
+                            )
+                        "
+                    >
+
+                        boleh dicoba 👀
+
+                    </button>
+
+
+                    <button
+                        onclick="
+                            chooseNextWeekend(
+                                'Nanti aku kabarin'
+                            )
+                        "
+                    >
+
+                        nanti aku kabarin
+
+                    </button>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ACTIVITY
+            ================================================== -->
+
+            <section
+                id="activity"
+                class="screen"
+            >
+
+                <div class="star">
+                    ✦
+                </div>
+
+
+                <div class="label">
+                    okay, noted
+                </div>
+
+
+                <div class="question">
+
+                    kalau jadi pergi,
+
+                    <br>
+
+                    kamu pengennya ngapain?
+
+                </div>
+
+
+                <div class="options two">
+
+
+                    <button
+                        onclick="
+                            chooseActivity(
+                                '☕ Ngopi'
+                            )
+                        "
+                    >
+
+                        ☕ ngopi
+
+                    </button>
+
+
+                    <button
+                        onclick="
+                            chooseActivity(
+                                '🍜 Makan'
+                            )
+                        "
+                    >
+
+                        🍜 makan
+
+                    </button>
+
+
+                    <button
+                        onclick="
+                            chooseActivity(
+                                '🎬 Nonton'
+                            )
+                        "
+                    >
+
+                        🎬 nonton
+
+                    </button>
+
+
+                    <button
+                        onclick="
+                            chooseActivity(
+                                '🎮 Main / Arcade'
+                            )
+                        "
+                    >
+
+                        🎮 main
+
+                    </button>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 VIBE
+            ================================================== -->
+
+            <section
+                id="vibe"
+                class="screen"
+            >
+
+                <div class="star">
+                    ✧
+                </div>
+
+
+                <div class="label">
+                    next question
+                </div>
+
+
+                <div class="question">
+
+                    tempatnya
+                    lebih suka yang...
+
+                </div>
+
+
+                <div class="options">
+
+
+                    <button
+                        onclick="
+                            chooseVibe(
+                                '✨ Aesthetic & chill'
+                            )
+                        "
+                    >
+
+                        ✨ aesthetic & chill
+
+                    </button>
+
+
+                    <button
+                        onclick="
+                            chooseVibe(
+                                '🍽️ Yang penting enak'
+                            )
+                        "
+                    >
+
+                        🍽️ yang penting enak
+
+                    </button>
+
+
+                    <button
+                        onclick="
+                            chooseVibe(
+                                '🎲 Bebas, yang penting seru'
+                            )
+                        "
+                    >
+
+                        🎲 bebas, yang penting seru
+
+                    </button>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 TIME
+            ================================================== -->
+
+            <section
+                id="time"
+                class="screen"
+            >
+
+                <div class="star">
+                    ♡
+                </div>
+
+
+                <div class="label">
+                    last one
+                </div>
+
+
+                <div class="question">
+
+                    enaknya pergi kapan?
+
+                </div>
+
+
+                <div class="options two">
+
+
+                    <button
+                        onclick="
+                            chooseTime(
+                                '☀️ Siang'
+                            )
+                        "
+                    >
+
+                        ☀️ siang
+
+                    </button>
+
+
+                    <button
+                        onclick="
+                            chooseTime(
+                                '🌆 Sore'
+                            )
+                        "
+                    >
+
+                        🌆 sore
+
+                    </button>
+
+
+                    <button
+                        onclick="
+                            chooseTime(
+                                '🌙 Malam'
+                            )
+                        "
+                    >
+
+                        🌙 malam
+
+                    </button>
+
+
+                    <button
+                        onclick="
+                            chooseTime(
+                                '🤷 Bebas'
+                            )
+                        "
+                    >
+
+                        🤷 bebas
+
+                    </button>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 RESULT
+            ================================================== -->
+
+            <section
+                id="result"
+                class="screen"
+            >
+
+                <div class="star">
+                    ✦
+                </div>
+
+
+                <div class="label">
+                    interesting...
+                </div>
+
+
+                <h1>
+
+                    sounds like a plan 👀
+
+                </h1>
+
+
+                <p class="subtitle">
+
+                    jadi weekend ideal kamu
+                    kira-kira begini...
+
+                </p>
+
+
+
+                <div class="summary">
+
+
+                    <div class="summary-row">
+
+                        <span class="summary-label">
+
+                            ngapain
+
+                        </span>
+
+
+                        <span
+                            id="resultActivity"
+                            class="summary-value"
+                        >
+
+                            -
+
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="summary-row">
+
+                        <span class="summary-label">
+
+                            suasana
+
+                        </span>
+
+
+                        <span
+                            id="resultVibe"
+                            class="summary-value"
+                        >
+
+                            -
+
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="summary-row">
+
+                        <span class="summary-label">
+
+                            waktu
+
+                        </span>
+
+
+                        <span
+                            id="resultTime"
+                            class="summary-value"
+                        >
+
+                            -
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <p class="subtitle">
+
+                    kebetulan...
+
+                    <br>
+
+                    aku juga mau pergi weekend ini 😭
+
+                </p>
+
+
+
+                <button
+                    id="sendButton"
+                    class="primary"
+                    onclick="sendAnswer()"
+                >
+
+                    kirim jawabanku 👀
+
+                </button>
+
+
+                <div
+                    id="sendStatus"
+                    class="send-status"
+                ></div>
+
+
+                <p class="tiny">
+
+                    jawabannya baru dikirim
+                    setelah tombol di atas ditekan :)
+
+                </p>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 NEXT WEEKEND RESULT
+            ================================================== -->
+
+            <section
+                id="nextWeekendResult"
+                class="screen"
+            >
+
+                <div class="star">
+                    ♡
+                </div>
+
+
+                <div class="label">
+                    okay, noted
+                </div>
+
+
+                <h1>
+
+                    next weekend maybe? 👀
+
+                </h1>
+
+
+                <p
+                    id="nextWeekendMessage"
+                    class="subtitle"
+                >
+                </p>
+
+
+                <button
+                    id="sendButton2"
+                    class="primary"
+                    onclick="sendAnswer()"
+                >
+
+                    kirim jawabanku 👀
+
+                </button>
+
+
+                <div
+                    id="sendStatus2"
+                    class="send-status"
+                ></div>
+
+
+                <p class="tiny">
+
+                    siapa tau nanti jadi main 😭
+
+                </p>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SENT
+            ================================================== -->
+
+            <section
+                id="sent"
+                class="screen"
+            >
+
+                <div class="star">
+
+                    ♥
+
+                </div>
+
+
+                <div class="label">
+
+                    received
+
+                </div>
+
+
+                <h1>
+
+                    okay, aku catet 👀
+
+                </h1>
+
+
+                <p class="subtitle">
+
+                    tinggal tentuin
+                    tempat sama harinya aja :)
+
+                </p>
+
+
+                <button
+                    onclick="restartGame()"
+                >
+
+                    ulang dari awal
+
+                </button>
+
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         HIDDEN FORM
+
+         Form dikirim ke Apps Script melalui iframe tersembunyi.
+    ====================================================== -->
+
+    <iframe
+        name="hiddenFrame"
+        id="hiddenFrame"
+        style="display:none;"
+    ></iframe>
+
+
+    <form
+        id="sheetForm"
+        method="POST"
+        target="hiddenFrame"
+        style="display:none;"
+    >
+
+        <input
+            type="hidden"
+            name="weekend_free"
+            id="formWeekend"
+        >
+
+
+        <input
+            type="hidden"
+            name="activity"
+            id="formActivity"
+        >
+
+
+        <input
+            type="hidden"
+            name="vibe"
+            id="formVibe"
+        >
+
+
+        <input
+            type="hidden"
+            name="time"
+            id="formTime"
+        >
+
+
+        <input
+            type="hidden"
+            name="next_weekend"
+            id="formNextWeekend"
+        >
+
+    </form>
+
+
+
+    <script>
+
+
+        // =====================================================
+        // GOOGLE APPS SCRIPT URL
+        //
+        // GANTI URL DI BAWAH INI
+        // dengan URL Web App Apps Script kamu.
+        // =====================================================
+
+        const GOOGLE_SCRIPT_URL =
+            "https://script.google.com/macros/s/AKfycbxuQNMgGCpSqofvwOkkyjia_obCC7Bx9uBSnj-LN14-t0qVQm4z7hzRu8gu4q6CQ2zJ/exec";
+
+
+        // =====================================================
+        // ANSWER STATE
+        // =====================================================
+
+        const answers = {
+
+            free:
+                "",
+
+            activity:
+                "",
+
+            vibe:
+                "",
+
+            time:
+                "",
+
+            nextWeekend:
+                ""
+
+        };
+
+
+        let sending =
+            false;
+
+
+
+        // =====================================================
+        // SCREEN
+        // =====================================================
+
+        function showScreen(id) {
+
+
+            document
+                .querySelectorAll(
+                    ".screen"
+                )
+                .forEach(
+
+                    function(screen) {
+
+                        screen
+                            .classList
+                            .remove(
+                                "active"
+                            );
+
+                    }
+
+                );
+
+
+            document
+                .getElementById(id)
+                .classList
+                .add(
+                    "active"
+                );
+
+
+        }
+
+
+
+        // =====================================================
+        // FREE?
+        // =====================================================
+
+        function answerFree(isFree) {
+
+
+            if (isFree) {
+
+                answers.free =
+                    "Iya, free";
+
+                showScreen(
+                    "activity"
+                );
+
+            }
+
+
+            else {
+
+                answers.free =
+                    "Engga";
+
+                showScreen(
+                    "notFree"
+                );
+
+            }
+
+
+        }
+
+
+
+        // =====================================================
+        // NEXT WEEKEND
+        // =====================================================
+
+        function chooseNextWeekend(value) {
+
+
+            answers.nextWeekend =
+                value;
+
+
+            const message =
+                document.getElementById(
+                    "nextWeekendMessage"
+                );
+
+
+            if (
+                value ===
+                "Boleh dicoba 👀"
+            ) {
+
+                message.innerHTML =
+
+                    "hmm... berarti masih ada kesempatan " +
+
+                    "buat ngajak main next weekend ya 👀";
+
+            }
+
+
+            else {
+
+                message.innerHTML =
+
+                    "gapapa 😭<br><br>" +
+
+                    "nanti kalau udah tau jadwalnya " +
+
+                    "kabarin aja ya :)";
+
+            }
+
+
+            showScreen(
+                "nextWeekendResult"
+            );
+
+
+        }
+
+
+
+        // =====================================================
+        // ACTIVITY
+        // =====================================================
+
+        function chooseActivity(value) {
+
+
+            answers.activity =
+                value;
+
+
+            showScreen(
+                "vibe"
+            );
+
+
+        }
+
+
+
+        // =====================================================
+        // VIBE
+        // =====================================================
+
+        function chooseVibe(value) {
+
+
+            answers.vibe =
+                value;
+
+
+            showScreen(
+                "time"
+            );
+
+
+        }
+
+
+
+        // =====================================================
+        // TIME
+        // =====================================================
+
+        function chooseTime(value) {
+
+
+            answers.time =
+                value;
+
+
+            document
+                .getElementById(
+                    "resultActivity"
+                )
+                .textContent =
+                    answers.activity;
+
+
+            document
+                .getElementById(
+                    "resultVibe"
+                )
+                .textContent =
+                    answers.vibe;
+
+
+            document
+                .getElementById(
+                    "resultTime"
+                )
+                .textContent =
+                    answers.time;
+
+
+            showScreen(
+                "result"
+            );
+
+
+        }
+
+
+
+        // =====================================================
+        // SEND TO GOOGLE SHEETS
+        // =====================================================
+
+        function sendAnswer() {
+
+
+            if (sending) {
+
+                return;
+
+            }
+
+
+            // ---------------------------------------------
+            // Check URL
+            // ---------------------------------------------
+
+            if (
+                GOOGLE_SCRIPT_URL.includes(
+                    "PASTE_APPS_SCRIPT"
+                )
+            ) {
+
+                alert(
+
+                    "Google Apps Script belum disambungkan 😭\n\n" +
+
+                    "Ganti PASTE_APPS_SCRIPT_URL_DI_SINI " +
+
+                    "dengan URL Web App dari Apps Script."
+
+                );
+
+
+                return;
+
+            }
+
+
+
+            sending =
+                true;
+
+
+
+            // ---------------------------------------------
+            // Status
+            // ---------------------------------------------
+
+            const status1 =
+                document.getElementById(
+                    "sendStatus"
+                );
+
+
+            const status2 =
+                document.getElementById(
+                    "sendStatus2"
+                );
+
+
+            if (status1) {
+
+                status1.textContent =
+                    "ngirim jawaban...";
+
+            }
+
+
+            if (status2) {
+
+                status2.textContent =
+                    "ngirim jawaban...";
+
+            }
+
+
+
+            // ---------------------------------------------
+            // Buttons
+            // ---------------------------------------------
+
+            const button1 =
+                document.getElementById(
+                    "sendButton"
+                );
+
+
+            const button2 =
+                document.getElementById(
+                    "sendButton2"
+                );
+
+
+            if (button1) {
+
+                button1.disabled =
+                    true;
+
+            }
+
+
+            if (button2) {
+
+                button2.disabled =
+                    true;
+
+            }
+
+
+
+            // ---------------------------------------------
+            // Populate form
+            // ---------------------------------------------
+
+            document
+                .getElementById(
+                    "formWeekend"
+                )
+                .value =
+
+                    answers.free
+                    ||
+                    "-";
+
+
+            document
+                .getElementById(
+                    "formActivity"
+                )
+                .value =
+
+                    answers.activity
+                    ||
+                    "-";
+
+
+            document
+                .getElementById(
+                    "formVibe"
+                )
+                .value =
+
+                    answers.vibe
+                    ||
+                    "-";
+
+
+            document
+                .getElementById(
+                    "formTime"
+                )
+                .value =
+
+                    answers.time
+                    ||
+                    "-";
+
+
+            document
+                .getElementById(
+                    "formNextWeekend"
+                )
+                .value =
+
+                    answers.nextWeekend
+                    ||
+                    "-";
+
+
+
+            // ---------------------------------------------
+            // Submit
+            // ---------------------------------------------
+
+            const form =
+                document.getElementById(
+                    "sheetForm"
+                );
+
+
+            form.action =
+                GOOGLE_SCRIPT_URL;
+
+
+            form.submit();
+
+
+
+            // ---------------------------------------------
+            // Show success screen
+            // ---------------------------------------------
+
+            setTimeout(
+
+                function() {
+
+                    showScreen(
+                        "sent"
+                    );
+
+                    sending =
+                        false;
+
+                },
+
+                900
+
+            );
+
+
+        }
+
+
+
+        // =====================================================
+        // RESTART
+        // =====================================================
+
+        function restartGame() {
+
+
+            answers.free =
+                "";
+
+            answers.activity =
+                "";
+
+            answers.vibe =
+                "";
+
+            answers.time =
+                "";
+
+            answers.nextWeekend =
+                "";
+
+
+            sending =
+                false;
+
+
+            const button1 =
+                document.getElementById(
+                    "sendButton"
+                );
+
+
+            const button2 =
+                document.getElementById(
+                    "sendButton2"
+                );
+
+
+            button1.disabled =
+                false;
+
+
+            button2.disabled =
+                false;
+
+
+            document
+                .getElementById(
+                    "sendStatus"
+                )
+                .textContent =
+                    "";
+
+
+            document
+                .getElementById(
+                    "sendStatus2"
+                )
+                .textContent =
+                    "";
+
+
+            showScreen(
+                "intro"
+            );
+
+
+        }
+
+
+
+        // =====================================================
+        // PARTICLES
+        // =====================================================
+
+        const particleContainer =
+            document.getElementById(
+                "particles"
+            );
+
+
+        const particleCharacters = [
+
+            "✦",
+            "✧",
+            "♡",
+            "♥",
+            "·"
+
+        ];
+
+
+        const particleColors = [
+
+            "#ff9edc",
+            "#d6a7ff",
+            "#ffc4e7",
+            "#baa5ff"
+
+        ];
+
+
+        const PARTICLE_COUNT =
+            18;
+
+
+
+        for (
+            let i = 0;
+            i < PARTICLE_COUNT;
+            i++
+        ) {
+
+            createParticle();
+
+        }
+
+
+
+        function createParticle() {
+
+
+            const particle =
+                document.createElement(
+                    "span"
+                );
+
+
+            particle.className =
+                "particle";
+
+
+            particle.textContent =
+
+                particleCharacters[
+
+                    Math.floor(
+
+                        Math.random()
+                        *
+                        particleCharacters.length
+
+                    )
+
+                ];
+
+
+            particle.style.left =
+
+                Math.random()
+                *
+                100
+                +
+                "%";
+
+
+            particle.style.color =
+
+                particleColors[
+
+                    Math.floor(
+
+                        Math.random()
+                        *
+                        particleColors.length
+
+                    )
+
+                ];
+
+
+            particle.style.fontSize =
+
+                10
+                +
+                Math.random()
+                *
+                14
+                +
+                "px";
+
+
+            particle.style.animationDuration =
+
+                9
+                +
+                Math.random()
+                *
+                10
+                +
+                "s";
+
+
+            particle.style.animationDelay =
+
+                -Math.random()
+                *
+                15
+                +
+                "s";
+
+
+            particleContainer
+                .appendChild(
+                    particle
+                );
+
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
